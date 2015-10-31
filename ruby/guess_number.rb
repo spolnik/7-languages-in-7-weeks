@@ -1,5 +1,5 @@
 range_from = 1
-range_to = 2
+range_to = 10
 
 number_to_guess = rand(range_to) + 1
 
