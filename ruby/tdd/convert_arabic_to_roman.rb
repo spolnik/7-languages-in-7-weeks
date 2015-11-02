@@ -1,4 +1,6 @@
-
+def convert(in_arabic)
+  ""
+end
 
 describe "Converting arabic numbers to roman numerals" do
   context "Roman didn't have a 0" do
