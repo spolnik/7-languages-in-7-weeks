@@ -1,6 +1,7 @@
 CONVERSIONS = [
   [5, "V"],
-  [1, "I"]
+  [4, "IV"],
+  [1, "I"],
 ]
 
 def conversion_factors_for(in_arabic)
@@ -23,7 +24,8 @@ describe "Converting arabic numbers to roman numerals" do
   {
     1 => "I",
     5 => "V",
-    2 => "II"
+    2 => "II",
+    4 => "IV",
   }.each_pair do |arabic,roman|
     it "converts #{arabic} to #{roman}" do
       expect(convert(arabic)).to eq(roman)
