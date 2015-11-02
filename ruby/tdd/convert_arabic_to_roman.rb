@@ -1,4 +1,9 @@
 CONVERSIONS = [
+  [100, "C"],
+  [90, "XC"],
+  [50, "L"],
+  [40, "XL"],
+  [10, "X"],
   [5, "V"],
   [4, "IV"],
   [1, "I"],
@@ -26,6 +31,12 @@ describe "Converting arabic numbers to roman numerals" do
     5 => "V",
     2 => "II",
     4 => "IV",
+    6 => "VI",
+    10 => "X",
+    40 => "XL",
+    50 => "L",
+    90 => "XC",
+    100 => "C",
   }.each_pair do |arabic,roman|
     it "converts #{arabic} to #{roman}" do
       expect(convert(arabic)).to eq(roman)
