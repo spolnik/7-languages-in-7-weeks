@@ -1,7 +1,7 @@
 def convert(in_arabic)
   return "" if in_arabic.zero?
-  return "V" if in_arabic == 5
-  "I" + convert(in_arabic - 1)
+  arabic, roman = [[5, "V"], [1, "I"]].find { |arabic, _| arabic <= in_arabic }
+  roman + convert(in_arabic - arabic)
 end
 
 describe "Converting arabic numbers to roman numerals" do
