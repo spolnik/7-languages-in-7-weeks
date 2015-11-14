@@ -30,11 +30,22 @@ class Resistor
     value = (first_value + second_value) * multiplier
   end
 
+  def find_resistor(resistance)
+
+  end
+
   def string_value
     return nominal_value.to_s if nominal_value < 1000
     return (nominal_value / 1000).to_s + "k" if nominal_value < 1_000_000
     return (nominal_value / 1_000_000).to_s + "M" if nominal_value < 1_000_000_000
     return (nominal_value / 1_000_000_000).to_s + "G"
+  end
+
+  def to_s
+    @first_color.upcase + " " +
+      @second_color.upcase + " " +
+      @third_color.upcase + " " +
+      @fourth_color.upcase + " "
   end
 
 end
@@ -50,4 +61,31 @@ class ResistorStripe
   end
 end
 
-puts Resistor.new('red', 'red', 'orange', 'gold').string_value + "Ω"
+def print_resistor(resistor)
+  puts resistor.to_s + resistor.string_value + "Ω"
+end
+
+resistors = [
+  Resistor.new('red', 'red', 'orange', 'gold'),
+  Resistor.new('red', 'red', 'red', 'gold'),
+  Resistor.new('brown', 'black', 'orange', 'gold'),
+  Resistor.new('brown', 'black', 'brown', 'gold'),
+  Resistor.new('brown', 'black', 'yellow', 'gold'),
+  Resistor.new('yellow', 'violet', 'orange', 'gold'),
+  Resistor.new('yellow', 'violet', 'brown', 'gold'),
+  Resistor.new('brown', 'black', 'blue', 'gold'),
+  Resistor.new('orange', 'white', 'red', 'silver'),
+  Resistor.new('red', 'red', 'yellow', 'gold'),
+  Resistor.new('red', 'red', 'brown', 'gold'),
+  Resistor.new('yellow', 'violet', 'yellow', 'gold'),
+  Resistor.new('brown', 'black', 'green', 'gold'),
+  Resistor.new('brown', 'black', 'black', 'gold'),
+  Resistor.new('yellow', 'violet', 'black', 'gold'),
+  Resistor.new('red', 'red', 'green', 'gold'),
+  Resistor.new('yellow', 'violet', 'green', 'gold'),
+  Resistor.new('red', 'red', 'black', 'gold'),
+  Resistor.new('yellow', 'violet', 'red', 'gold')
+]
+
+resistors.sort! { |x,y| x.nominal_value <=> y.nominal_value }
+resistors.each { |resistor| print_resistor resistor }
