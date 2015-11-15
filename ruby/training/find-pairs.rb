@@ -43,8 +43,8 @@ def find_hosts_for(group, language)
   group.select {|name,skills| skills.include?(language)}.keys.shuffle
 end
 
-def find_peers_for(group, language)
- group.reject {|name,skills| skills.include?(language)}.keys.shuffle
+def find_peers_for(group, hosts)
+ (group.keys - hosts).shuffle
 end
 
 def balance_hosts_and_peers(hosts, peers)
@@ -61,6 +61,7 @@ def randomize(group)
 end
 
 def display_pairs(hosts, peers)
+  puts "HOST <> PEER (we code on peer laptop)"
   for i in 0..hosts.length-1
     puts "Pair (" + (i+1).to_s + "): " + hosts[i] + " <> " + peers[i]
   end
@@ -77,7 +78,7 @@ language = validate_language(ARGV, languages)
 remove_trainer_if_odd_count(craftsmans)
 
 hosts = find_hosts_for(craftsmans, language)
-peers = find_peers_for(craftsmans, language)
+peers = find_peers_for(craftsmans, hosts)
 
 balance_hosts_and_peers(hosts, peers)
 
