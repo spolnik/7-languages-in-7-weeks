@@ -8,13 +8,6 @@ languages = {
   "haskell" => :haskell
 }
 
-language = languages[ARGV[0]]
-raise Exception.new("Unsupported language: " + ARGV[0]) unless language
-
-puts
-puts ">> " + language.to_s + " <<"
-puts "========"
-
 craftsmans = {
   "Georgi" => [:scala],
   "Bartosz" => [],
@@ -30,22 +23,63 @@ craftsmans = {
   "Jacek" => [:ruby, :scala]
 }
 
-craftsmans.delete("Jacek") if craftsmans.length % 2 == 1
+def validate_language(args, languages)
+  language = languages[args[0]]
 
-hosts = craftsmans.select {|name,skills| skills.include?(language)}.keys.shuffle
-peers = craftsmans.reject {|name,skills| skills.include?(language)}.keys.shuffle
+  raise Exception.new("Unsupported language: " + ARGV[0]) unless language
 
-while peers.length > hosts.length do
-  hosts << peers.slice!(rand(peers.length))
+  puts
+  puts ">> " + language.to_s + " <<"
+  puts "========"
+
+  language
 end
 
-hosts.shuffle!
-peers.shuffle!
-
-for i in 0..hosts.length-1
-  puts "Pair (" + (i+1).to_s + "): " + hosts[i] + " <> " + peers[i]
+def remove_trainer_if_odd_count(group)
+  group.delete("Jacek") if group.length % 2 == 1
 end
 
-puts "========"
-puts "<< Time to switch: " + (rand(3..6) * 5).to_s + " min >>"
-puts
+def find_hosts_for(group, language)
+  group.select {|name,skills| skills.include?(language)}.keys.shuffle
+end
+
+def find_peers_for(group, language)
+ group.reject {|name,skills| skills.include?(language)}.keys.shuffle
+end
+
+def balance_hosts_and_peers(hosts, peers)
+  while peers.length > hosts.length do
+    hosts << peers.slice!(rand(peers.length))
+  end
+
+  randomize(hosts)
+  randomize(peers)
+end
+
+def randomize(group)
+  group.shuffle!
+end
+
+def display_pairs(hosts, peers)
+  for i in 0..hosts.length-1
+    puts "Pair (" + (i+1).to_s + "): " + hosts[i] + " <> " + peers[i]
+  end
+end
+
+def display_time_to_switch
+  puts "========"
+  puts "<< Time to switch: " + (rand(3..6) * 5).to_s + " min >>"
+  puts
+end
+
+language = validate_language(ARGV, languages)
+
+remove_trainer_if_odd_count(craftsmans)
+
+hosts = find_hosts_for(craftsmans, language)
+peers = find_peers_for(craftsmans, language)
+
+balance_hosts_and_peers(hosts, peers)
+
+display_pairs(hosts, peers)
+display_time_to_switch
