@@ -10,13 +10,13 @@ languages = {
 
 craftsmans = {
   "Georgi" => [:scala],
-  "Bartosz" => [],
+  "Bartosz" => [:ruby],
   "GrzegorzGl" => [],
-  "GrzegprzGu" => [],
-  "Tomasz" => [],
+  "GrzegprzGu" => [:scala],
+  "Tomasz" => [:prolog],
   "Oleh" => [],
   "Maciej" => [],
-  "Anton" => [],
+  "Anton" => [:scala],
   "Evgeny" => [],
   "Denys" => [],
   "Aleksander" => [],

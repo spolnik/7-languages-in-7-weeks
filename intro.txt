@@ -1,0 +1,16 @@
+- Introduction of myself, introduction of you
+
+- Thinking about time we want to handle it. there are actually two choices:
+-- weekly basis, based on room availability
+-- do it in weekly basis but starting later (Dec/Jan) - based on availability
+
+- Thinking about the way we want to handle book
+-- do easy part at home, do hard things together, read at home
+-- do all things together (coding), read at home
+-- all options covers a bit of additional effort - unit testing in particular language
+
+- preparing to ruby, the first language we will deal with:
+-- what we have to install (atom, ruby)
+-- what we have to read, what to code/play with
+
+- Introduction to program, drawing pairs and time
