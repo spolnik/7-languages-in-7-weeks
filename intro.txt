@@ -14,3 +14,5 @@
 -- what we have to read, what to code/play with
 
 - Introduction to program, drawing pairs and time
+
+safari
