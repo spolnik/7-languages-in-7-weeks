@@ -18,10 +18,10 @@ class Tree
   def self.from(tree)
     name = tree.keys[0]
     children = []
-    tree.values[0].each do |childName, childNode|
-        children.push(self.from({
-            childName => childNode
-          }))
+    childrenNode = tree.values[0]
+
+    childrenNode.each do |childName, childNode|
+        children << self.from({ childName => childNode })
     end
 
     Tree.new(name, children)
